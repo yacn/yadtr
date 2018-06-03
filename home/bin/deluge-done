@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Thanks to /u/xojackie from this thread for the snippet so I didn't have to do
+# any extra research and could basically just copy/paste
+# https://www.reddit.com/r/seedboxes/comments/4xpsd6/deluge_hard_linking
+
+function debug() {
+  printf "$@" | tee -a "$HOME/bin/deluge-done.log"
+}
+
+# debug $@
+
+torrent_id=$1
+torrent_name=$2
+torrent_path=$3
+
+debug "\\n\\ntorrent_id: ${torrent_id}, torrent_name: ${torrent_name}, torrent_path: ${torrent_path}"
+
+if [[ -f "${torrent_path}/${torrent_name}" ]]; then
+  debug "\\t- linking single file: ln ${torrent_name} -> complete\\n"
+  #ln "${torrent_path}/${torrent_name}" "${torrent_path}/complete/${torrent_name}"
+elif [[ -d "${torrent_path}/${torrent_name}" ]]; then
+  debug "\\t- cp-linking dir: cp -rl ${torrent_name} -> complete\\n"
+  #cp -rl "${torrent_path}/${torrent_name}" "${torrent_path}/complete/${torrent_name}"
+fi
