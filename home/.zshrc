@@ -102,10 +102,4 @@ alias g='git'
 alias gs='git status'
 alias gb='git branch'
 
-# Useful Plex Aliases/Functions
-alias plex-ps='ps aux | grep -i "[p]lex"'
-# wrapping `p` in `[]` makes it so grep doesn't match itself
-plex-ps() { ps aux | grep -i "[p]lex" }
-# log path specific to Plex on Solus afaik
-export PMS_LOG_LOCATION='/var/lib/plexmediaserver/Plex\ Media\ Server/Logs/Plex\ Media\ Server.log'
-plex-thumbnail-progress() { tail -5 $PMS_LOG_LOCATION | grep -Eo "?progress=[0-9]{2}.[0-9]" | tail -1 }
+source $HOME/bin/plex-functions.zsh
