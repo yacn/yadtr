@@ -5,6 +5,20 @@ function plex-ps() {
   ps aux | grep -i "[p]lex"
 }
 
+function is-plex-transcoding() {
+  local maybe_transcoding=$(__plex-transcoding)
+  if [[ -z $maybe_transcoding ]]; then
+    echo "No"
+  else
+    echo "Yes"
+    echo "${maybe_transcoding}"
+  fi
+  if [[ $1 == "-v" ]]; then
+    echo
+    plex-ps
+  fi
+}
+
 function plex-thumbnail-progress() {
   local currently_transcoding=$(__plex-transcoding)
   local thumbnail_progress=$(__plex-thumbnail-progress)
