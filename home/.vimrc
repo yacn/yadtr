@@ -41,3 +41,4 @@ set shiftwidth=2 " Indents are 2 spaces
 set expandtab " Use spaces instead of tabs
 set mouse=a " Mouse wheel scrolling
 set ruler " Show column
+set backspace=indent,eol,start " make backspace work as expected
